@@ -1,0 +1,16 @@
+<table *ngIf="dataLoaded==true" class="table">
+    <thead> 
+        <tr>
+            <th>Customer Id</th>
+            <th>Company Name</th>
+            <th>User Id</th>
+        </tr>
+    </thead>
+    <tr *ngFor="let customer of customers">
+        <td>{{customer.customerId}}</td>
+        <td>{{customer.companyName}}</td>
+        <td>{{customer.userId}}</td>
+        
+
+    </tr>
+</table>
