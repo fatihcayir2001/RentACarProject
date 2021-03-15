@@ -8,7 +8,7 @@ import { CarResponseModel } from '../models/carResponseModel';
 })
 export class CarService {
 
-  apiUrl = 'https://localhost:44328/api/cars/getall';
+  apiUrl = 'https://localhost:44328/api/cars/getdetails';
 
   //httpclient kullanabilmek için enjekte ettik
 
