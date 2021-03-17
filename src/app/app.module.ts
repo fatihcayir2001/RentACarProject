@@ -10,6 +10,8 @@ import { ColorComponent } from './components/color/color.component';
 import { CustomerComponent } from './components/customer/customer.component';
 import { NaviComponent } from './components/navi/navi.component';
 import { RentalComponent } from './components/rental/rental.component';
+import { CategoryComponent } from './components/category/category.component';
+import { CarDetailComponent } from './components/car/car-detail/car-detail/car-detail.component';
 
 
 
@@ -21,7 +23,9 @@ import { RentalComponent } from './components/rental/rental.component';
     ColorComponent,
     CustomerComponent,
     NaviComponent,
-    RentalComponent
+    RentalComponent,
+    CategoryComponent,
+    CarDetailComponent
   ],
   imports: [
     BrowserModule,
