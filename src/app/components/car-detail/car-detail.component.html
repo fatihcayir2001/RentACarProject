@@ -1,0 +1,49 @@
+<div *ngIf="dataLoaded==false" class="d-flex justify-content-center">
+    <div class="spinner-border text-success" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+  <div *ngIf="dataLoaded==true" class="card mb-3">
+  
+  <br>
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div *ngFor="let carImage of carImages let i = index" [class]="getSliderClassName(i)">
+          <img src="{{imageUrl}}{{carImage.imagePath}}" class="d-block w-100" alt="...">
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"  data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"  data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+      </div>  
+    </div> 
+  
+
+   <table *ngIf="dataLoaded==true && car" class="table table-success table-striped">
+    <tbody>
+             <tr><strong>Marka: </strong> {{car.brandName}}</tr> <br>
+             <tr><strong>Model: </strong> {{car.modelYear}}</tr><br>
+             <tr><strong>Renk: </strong> {{car.colorName}}</tr><br>
+             <tr><strong>Günlük Kiralama Fiyatı: </strong> {{car.dailyPrice}}</tr><br>
+             <tr><strong>Model: </strong> {{car.description}}</tr>
+             
+    
+  </tbody>
+  </table>  
+  
+    <div class="row">
+      <div class="col-md-2"> <a routerLink="/cars" class="col-md-2"><button type="button" 
+        class="btn btn-primary">Ana sayfaya dön</button>
+      </a></div>
+      
+      <div class="col-md-10">
+        <a><button class="btn btn-success" (click)="rent(car)">Kirala</button></a>
+      </div>
+    </div>
+      
+  

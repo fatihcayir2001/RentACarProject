@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { category } from 'src/app/models/category';
-import { color } from 'src/app/models/color';
+import { Color } from 'src/app/models/color';
 
 @Component({
   selector: 'app-category',
@@ -13,7 +13,7 @@ export class CategoryComponent implements OnInit {
   category:any[]=[]
   categories:any[]=["Brands","Colors","Cars"]
   currentCategory : category;
-  colors:color[]=[]
+  colors:Color[]=[]
 
   constructor() { }
 

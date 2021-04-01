@@ -1,26 +1,55 @@
-<table class="table">
-    <thead>
-      <tr>
-        <th>Marka</th>
-      </tr>
-    </thead>
+<!-- <table
+  class="table table-danger table-striped table-hover table-bordered border-danger"
+  routerLink="/"
+  
+>
+  <thead>
     <tr>
-      <ul class="list-group">
-        <li
-          routerLink="/cars/brand/{{ brand.brandId }}"
-          *ngFor="let brand of brands"
-          (click)="setCurrentBrand(brand)"
-          [class]="getCurrentBrandClass(brand)"
-        >
-          {{ brand.brandName }}
-        </li>
-        <li
-          routerLink="/cars"
-          (click)="setCurrentBrand(defaultBrand)"
-          [class]="getCurrentBrandClass(defaultBrand)"
-        >
-          Hepsi
-        </li>
-      </ul>
+      <td (click)='clearCurrentBrand()'><h4>All Cars</h4></td>
     </tr>
-  </table>
+  </thead>
+</table>
+
+<table
+  class="table table-danger table-striped table-hover table-bordered border-danger"
+>
+  <thead>
+    <tr>
+      <td><h4>Brands</h4></td>
+    </tr>
+  </thead>
+</table>
+
+<ul class="list-group">
+  <li
+    (click)="setCurrentBrand(brand)"
+    routerLink="/cars/{{ brand.brandId }}"
+    *ngFor="let brand of brands"
+    [class]="getCurrentBrandClass(brand)"
+  >
+    {{ brand.brandName }}
+    
+  </li>
+  
+</ul>
+
+
+
+
+<h5 *ngIf="currentBrand">{{ currentBrand.brandName }} seçtiniz</h5> -->
+
+
+  
+<select
+  (change)="setCurrentBrand()"
+  [(ngModel)]="currentBrand"
+  class="form-select mb-1"
+  aria-label="Default select example"
+>
+  <option [selected]="allBrandSelected()" [ngValue]="allBrand">
+    Select a Brand
+  </option>
+  <option *ngFor="let brand of brands" [ngValue]="brand">
+    {{ brand.brandName }}
+  </option>
+</select>

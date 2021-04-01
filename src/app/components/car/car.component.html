@@ -1,20 +1,39 @@
-<div *ngIf="dataLoaded==false" class="spinner-border text-primary" role="status">
-  <span class="visually-hidden">Loading...</span>
+<div class="mb-3">
+  <label for="filterText" class="form-label">Araba Arayınız</label>
+  <input
+    [(ngModel)]="filterText"
+    type="string"
+    class="form-control"
+    id="filterText"
+    placeholder="Arama Yapınız"
+  />
 </div>
-<table *ngIf="dataLoaded==true" class="table">
-  <thead>
-    <tr>
-      <th>Brand Name</th>
-      <th>Model Name</th>
-      <th>Color</th>
-      <th>Daily Price</th>
-    
-    </tr>
-  </thead>
-  <tr *ngFor="let car of cars">
-    <td>{{ car.brandName }}</td>
-    <td>{{ car.description }}</td>
-    <td>{{ car.colorName }}</td>
-    <td>{{ car.dailyPrice }}</td>
-  </tr>
-</table>
+<div *ngIf="filterText.length !==0">{{filterText}} aradiniz</div>
+
+<div class="row">
+  <div class="card" style="width: 18rem" *ngFor="let car of carDetails | filterPipe:filterText">
+    <div>
+      <img
+        [src]="
+          car.imagePath.length !== 0 ? imageUrl + car.imagePath[0] : imageUrl
+        "
+        class="card-img-top"
+        alt="..."
+      />
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">{{ car.brandName }}</h5>
+      <p class="card-text">
+        Renk: {{ car.colorName | uppercase }} <br />
+        Model yılı: {{ car.modelYear }} <br />
+        Fiyat: {{ car.dailyPrice }}₺ <br />
+        Model Adi:{{ car.brandName }} {{ car.description }}
+      </p>
+
+      <a routerLink="/cars/car/{{ car.carId }}" class="btn btn-primary"
+        >Detaylar</a
+      >
+      <button class="btn btn-success">Kirala</button>
+    </div>
+  </div>
+</div>

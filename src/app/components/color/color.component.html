@@ -1,26 +1,13 @@
-<table class="table">
-    <thead>
-      <tr>
-        <th>Color</th>
-      </tr>
-    </thead>
-    <tr>
-      <ul class="list-group">
-        <li
-          routerLink="/cars/color/{{ color.colorId }}"
-          *ngFor="let color of colors"
-          (click)="setCurrentColor(color)"        
-          [class]="getCurrentColorClass(color)"        
-        >
-          {{ color.colorName }}
-        </li>
-        <li
-          routerLink="/cars"
-          (click)="setCurrentColor(defaultColor)"
-          [class]="getCurrentColorClass(defaultColor)"        
-        >
-          Hepsi
-        </li>
-      </ul>
-    </tr>
-  </table>
+<select
+  [(ngModel)]="currentColor"
+  (change)="setCurrentColor()"
+  class="form-select mb-1"
+  aria-label="Default select example"
+>
+  <option [selected]="allColorsSelected()" [ngValue]="allColor">
+    Select a Color
+  </option>
+  <option *ngFor="let color of colors" [ngValue]="color">
+    {{ color.colorName }}
+  </option>
+</select>

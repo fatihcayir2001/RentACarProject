@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { category } from 'src/app/models/category';
-import { color } from 'src/app/models/color';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Color } from 'src/app/models/color';
+import { Filters } from 'src/app/models/filters';
 import { ColorService } from 'src/app/services/color.service';
+
 
 @Component({
   selector: 'app-color',
@@ -10,42 +11,30 @@ import { ColorService } from 'src/app/services/color.service';
   styleUrls: ['./color.component.css'],
 })
 export class ColorComponent implements OnInit {
-  colors: color[] = [];
-  dataLoaded:boolean=false;
-  constructor(private colorService: ColorService) {}
-  currentCategory : category;
-  currentColor: color;
-
-  defaultColor: color = { colorId: -1, colorName: 'default' };
+  colors: Color[] = [];
+  currentColor: Color;
+  allColor?: Color;
+  Filters = { brandId: '', colorId: '' };
+  constructor(
+    private colorService: ColorService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    this.getColors()
+    this.getColor();
   }
-
-  
-
-  getColors() {
+  getColor() {
     this.colorService.getColors().subscribe((response) => {
-      this.colors=response.data
-      this.dataLoaded=true
+      this.colors = response.data;
     });
   }
-
-  setCurrentColor(color: color) {
-    this.currentColor = color;
-    if (color.colorId != -1) {
-      this.defaultColor.colorId = 0;
-    }
+  setCurrentColor() {
+    this.currentColor !== undefined
+      ? (Filters.colorId = this.currentColor.colorId.toString())
+      : (Filters.colorId = '');
   }
-
-  getCurrentColorClass(color: color) {
-    if (color.colorId == -1) {
-      return 'list-group-item active';
-    }
-    if (color == this.currentColor) {
-      return 'list-group-item active';
-    } else {
-      return 'list-group-item';
-    }
+  allColorsSelected() {
+    return this.currentColor == undefined ? true : false;
   }
 }
