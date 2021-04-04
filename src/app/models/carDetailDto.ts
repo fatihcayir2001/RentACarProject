@@ -9,5 +9,4 @@ export interface CarDetailDto{
     modelYear:string;
     carImageDate:Date;
     imagePath:string[];
-    
 }

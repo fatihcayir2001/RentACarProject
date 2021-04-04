@@ -14,12 +14,14 @@ import { NaviComponent } from './components/navi/navi.component';
 import { RentalComponent } from './components/rental/rental.component';
 import { CarDetailComponent } from './components/car-detail/car-detail.component';
 import { CategoryComponent } from './components/category/category.component';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { FilterPipePipe } from './pipes/filter-pipe.pipe';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule} from 'ngx-toastr'
 import { from } from 'rxjs';
 import { FilterComponent } from './components/filter/filter.component';
+import { PaymentComponent } from './components/payment/payment.component';
+import { RentComponent } from './components/rent/rent.component';
 
 
 
@@ -40,6 +42,8 @@ import { FilterComponent } from './components/filter/filter.component';
     CarDetailComponent,
     FilterPipePipe,
     FilterComponent,
+    PaymentComponent,
+    RentComponent,
     
 
   ],
@@ -52,9 +56,10 @@ import { FilterComponent } from './components/filter/filter.component';
     ToastrModule.forRoot({
       positionClass:"toast-bottom-right"
     }),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
