@@ -1,4 +1,9 @@
-<div class="mb-3">
+<div class="row">
+  <div class="col-md-2" >
+    <app-filter></app-filter>
+  </div>
+
+<div class="col-md-10">
   <label for="filterText" class="form-label">Araba Arayınız</label>
   <input
     [(ngModel)]="filterText"
@@ -8,9 +13,11 @@
     placeholder="Arama Yapınız"
   />
 </div>
+
 <div *ngIf="filterText.length !==0">{{filterText}} aradiniz</div>
 
 <div class="row">
+  
   <div class="card" style="width: 18rem" *ngFor="let car of carDetails | filterPipe:filterText">
     <div>
       <img
@@ -21,6 +28,7 @@
         alt="..."
       />
     </div>
+    
     <div class="card-body">
       <h5 class="card-title">{{ car.brandName }}</h5>
       <p class="card-text">
@@ -35,5 +43,8 @@
       >
       <button class="btn btn-success">Kirala</button>
     </div>
+    
   </div>
+  
+</div>
 </div>

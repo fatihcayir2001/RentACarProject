@@ -1,0 +1,69 @@
+<div class="content" >
+    <div class="col-md-12">
+        <div class="card">
+            <div class="alert alert-success" role="alert">
+                <div class="card-header"><h5 class="title"><h1> {{carDetail?.brandName}} {{carDetail?.description}} </h1>  Araç Güncelleme Formu</h5> </div>
+              </div>
+          
+            <div class="card-body">
+                <form [formGroup]="carUpdateForm">
+                   
+                    <div class="mb-3">
+                        <label for="brandId">Marka </label>
+                        <input class="form-control" type="text" placeholder="{{carDetail?.brandName}}" aria-label="readonly input example" readonly>
+
+                    </div>
+                    <div class="mb-3">
+                        <label for="colorId">Color Name</label>
+                        <div class="form-group" >
+                            <select type="number" id="colorId" formControlName="colorId" class="form-select" placeholder="Color Name" >
+                                <option 
+                                [ngValue]="color.colorId"
+                                *ngFor="let color of colors" >      
+                                  {{ color.colorName }}
+                                </option>
+                            </select>
+
+                     </div>
+
+                    </div>
+                  
+                <div class="mb-3">
+                    <label for="modelYear">Model Year</label>
+                    <div class="form-group">
+                     <input type="text" id="modelYear" formControlName="modelYear" class="form-control" placeholder="Model Year"/>
+                     </div>
+                        
+                </div>
+               
+                <div class="mb-3">
+                     
+               <label for="unitPrice">Daily Price</label>
+                <div class="form-group">
+                    <input type="number" id="dailyPrice" formControlName="dailyPrice" class="form-control" placeholder="Please enter a price"/>
+
+                </div>
+
+                </div>
+                <div class="mb-3">
+                    <label for="formFile" class="form-label">Fotograf Ekle</label>
+                    <input class="form-control" type="file" id="file" disabled>
+                    <img src="https://localhost:44328/uploads/Images/{{carDetail?.imagePath}}" alt="">
+                  </div>
+                </form>
+               
+            </div>
+            <div class="card-footer">
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button class="btn btn-fill btn-primary me-md-end" (click)="updateCar()" >Güncelle</button>
+                </div>
+
+            </div>
+            <app-car-delete></app-car-delete>
+            
+
+        </div>
+        
+    </div>
+   
+</div>

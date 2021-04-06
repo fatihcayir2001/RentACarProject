@@ -1,0 +1,17 @@
+
+<table class="table table-dark table-striped">
+    <thead>
+      <tr class="col-md-12">
+        <th scope="col">Color Id</th>
+        <th>Color Name</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody >
+      <tr *ngFor="let color of colors">
+        <td>{{color.colorId}}</td>
+        <td>{{color.colorName}}</td>
+        <td><button type="button" class="btn btn-primary" routerLink="{{color.colorId}}">Güncelle</button></td>
+      </tr>
+    </tbody>
+</table>

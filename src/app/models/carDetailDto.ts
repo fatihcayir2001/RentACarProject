@@ -1,12 +1,14 @@
+import { Car } from "./car";
 import { CarImage } from "./carImage";
 
-export interface CarDetailDto{
+export interface CarDetailDto extends Car{
     carId:number;
     brandName:string;
     colorName:string;
     description:string;
     dailyPrice:number;
-    modelYear:string;
-    carImageDate:Date;
     imagePath:string[];
+    modelYear:number
+    carImages : CarImage[];
+    
 }

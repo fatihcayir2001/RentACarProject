@@ -39,4 +39,5 @@ export class BrandComponent implements OnInit {
   }
   
   
+  
 }

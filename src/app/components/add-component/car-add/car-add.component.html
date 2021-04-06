@@ -1,0 +1,99 @@
+<div class="content">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="title">Add Carr</h5>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="carAddForm">
+          <div class="mb-3">
+            <label for="brandId">Marka Adı</label>
+            <div class="form-group" >
+                <select type="number" id="brandId" formControlName="brandId" class="form-select" placeholder="Marka Adı" >
+                    <option 
+                    [ngValue]="brand.brandId"
+                    *ngFor="let brand of brands" >      
+                      {{ brand.brandName }}
+                    </option>
+                </select>
+            </div>
+         </div>
+          
+        
+         <div class="mb-3">
+          <label for="colorId">Renk Adı</label>
+          <div class="form-group" >
+              <select type="number" id="colorId" formControlName="colorId" class="form-select" placeholder="Renk Adı" >
+                  <option 
+                  [ngValue]="color.colorId"
+                  *ngFor="let color of colors" >      
+                    {{ color.colorName }}
+                  </option>
+              </select>
+
+       </div>
+
+      </div>
+          
+        
+          <label for="Model Year">Please Add Model Year <small
+            *ngIf="carAddForm.get('modelYear')?.hasError('required')"
+            class="form-text text-muted"
+          >
+            (Model Year is must)
+          </small></label>
+          <div class="form-group">
+            <input
+              type="number"
+              id="modelYear"
+              formControlName="modelYear"
+              class="form-control"
+              placeholder="Model Year"
+            />
+          </div>
+          
+     
+
+          <label for="Daily Price">Please Add DailyPrice <small
+            *ngIf="carAddForm.get('dailyPrice')?.hasError('required')"
+            class="form-text text-muted"
+          >
+            (DailyPrice is must)
+          </small></label>
+          <div class="form-group">
+            <input
+              type="number"
+              id="dailyPrice"
+              formControlName="dailyPrice"
+              class="form-control"
+              placeholder="DailyPrice"
+            />
+          </div>
+          
+        
+
+          <label for="Description">Please Add Description <small
+            *ngIf="carAddForm.get('description')?.hasError('required')"
+            class="form-text text-muted"
+          >
+            (Description is must)
+          </small></label>
+          <div class="form-group">
+            <input
+              type="text"
+              id="description"
+              formControlName="description"
+              class="form-control"
+              placeholder="Description"
+            />
+          </div>
+          
+        </form>
+
+      </div>
+      <div class="card-footer">
+          <button class="btn btn-fill btn-primary" (click)="add()">Ekle</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+<div class="alert alert-success" role="alert">
+  <div class="card-header"><h5 class="title">Color Update Form</h5> </div>
+</div>
+<div class="content">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="title">Add color</h5>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="colorUpdateForm">
+            <div class="mb-3">
+              <label for="colorId">New Color Name</label>
+              
+              <div class="form-group">
+                <input
+                  type="text"
+                  id="colorName"
+                  formControlName="colorName"
+                  class="form-control"
+                  placeholder=""
+                />
+              </div>
+              <label for="colorName">Old Color Name</label>
+              <input class="form-control" type="text" placeholder="{{colors[colorId].colorName}}" aria-label="readonly input example" readonly>
+           </div>
+           <div class="card-footer">
+            <button class="btn btn-fill btn-primary" (click)="update()">Update </button>
+        </div>
+            
+            </form>
+            </div>
+        </div>
+    </div>
+</div>                        
+         

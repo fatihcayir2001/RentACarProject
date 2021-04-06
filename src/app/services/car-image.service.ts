@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Data } from '@angular/router';
 import { Observable } from 'rxjs';
 import { CarImage } from '../models/carImage';
+import { Image } from '../models/Image';
 import { ListResponseModel } from '../models/listResponseModel';
 
 @Injectable({
@@ -21,5 +23,9 @@ export class CarImageService {
     let newPath=this.apiUrl+"carimages/getall"
     return this.httpClient.get<ListResponseModel<CarImage>>(newPath)
   }
+  
+  Upload(image:Data){
+    return this.httpClient.post('CarImages/add', image)
 
+  }
 }
