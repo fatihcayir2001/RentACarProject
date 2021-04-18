@@ -1,1 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+    background-image: url(https://www.resimyukle.org/images/2021/04/19/4f7c2884e3aa65e14cc2c035947b90a0.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+  }

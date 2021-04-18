@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Toast, ToastrService } from 'ngx-toastr';
 import { Brand } from 'src/app/models/brand';
 import { BrandService } from 'src/app/services/brand.service';
 
@@ -10,7 +12,11 @@ import { BrandService } from 'src/app/services/brand.service';
 export class BrandListComponent implements OnInit {
   brands:Brand[]=[];
   dataLoaded=false;
-    constructor(private brandService:BrandService) { }
+  currentBrand:Brand
+
+    constructor(private brandService:BrandService,
+      private router:Router,
+      private toastrService:ToastrService) { }
   
     ngOnInit(): void {
       this.getBrands();
@@ -23,4 +29,35 @@ export class BrandListComponent implements OnInit {
       })
     }
 
+    routeAdd(){
+      this.router.navigate(['add/brand'])
+    }
+
+    routeUpdate(brandId:number){
+      this.router.navigate(['update/brands/'+brandId])
+    }
+
+    delete(){
+      this.brandService.delete(this.currentBrand).subscribe(response=>{
+        this.toastrService.success(response.message,"Success")
+        console.log("brand list delete çalıştı")
+      },errorResponse=>{
+        this.toastrService.error(errorResponse,"Failed")
+      });
+      
+    }
+  
+    refreshPage() {
+        setTimeout(() => {
+          window.location.reload();
+          this.toastrService.success("İşlem başarılı","Yönlendirliyorsunuz")
+        }, 1500);
+    }
+    
+    setCurrentBrand(brand:Brand){
+      this.currentBrand = brand
+      
+    }
+
+    
 }

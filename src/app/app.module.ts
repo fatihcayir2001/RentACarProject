@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from "@angular/common/http"
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http"
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations"
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -32,6 +32,10 @@ import { CarDeleteComponent } from './components/delete/car-delete/car-delete.co
 import { ColorListComponent } from './components/list-component/color-list/color-list.component';
 import { ColorUpdateComponent } from './components/update-component/color-update/color-update.component';
 import { BrandUpdateComponent } from './components/update-component/brand-update/brand-update.component';
+import { LoginComponent } from './components/login/login.component';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { MainComponent } from './components/main/main.component';
+
 
 
 
@@ -64,6 +68,9 @@ import { BrandUpdateComponent } from './components/update-component/brand-update
     ColorListComponent,
     ColorUpdateComponent,
     BrandUpdateComponent,
+    LoginComponent,
+    MainComponent,
+
     
 
   ],
@@ -79,7 +86,9 @@ import { BrandUpdateComponent } from './components/update-component/brand-update
     BrowserAnimationsModule,
     ReactiveFormsModule
   ],
-  providers: [DatePipe,CarListComponent],
+  providers: [DatePipe,CarListComponent,
+    {provide:HTTP_INTERCEPTORS, useClass:AuthInterceptor, multi:true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

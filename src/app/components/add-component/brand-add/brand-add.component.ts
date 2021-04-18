@@ -14,12 +14,14 @@ export class BrandAddComponent implements OnInit {
   brandAddForm:FormGroup;
   brands:Brand[]
 
-  constructor(private brandService:BrandService,private formBuilder:FormBuilder, private toastrService:ToastrService) { }
+  constructor(private brandService:BrandService,
+    private formBuilder:FormBuilder, 
+    private toastrService:ToastrService) { }
 
 
   ngOnInit(): void {
-    this.getBrands()
-    this.CreateBrandAddFrom()
+    this.CreateBrandAddFrom();
+    this.getBrands();
   }
 
   getBrands(){
@@ -45,8 +47,8 @@ export class BrandAddComponent implements OnInit {
           this.toastrService.success(data.message, 'Başarılı');
         },
         (responseError) => {
+          console.log(responseError)
           if (responseError.error.Errors.length > 0) {
-            console.log(responseError.error.Errors);
             for (let i = 0; i < responseError.error.Errors.length; i++) {
               this.toastrService.warning(
                 responseError.error.Errors[i].ErrorMessage,
@@ -59,5 +61,5 @@ export class BrandAddComponent implements OnInit {
     } else {
       this.toastrService.warning('Formunuz hatalı', 'Uyarı');
     }
-  }
+}
 }

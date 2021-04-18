@@ -15,9 +15,13 @@ import { CarDeleteComponent } from './components/delete/car-delete/car-delete.co
 import { ColorAddComponent } from './components/add-component/color-add/color-add.component';
 import { ColorListComponent } from './components/list-component/color-list/color-list.component';
 import { ColorUpdateComponent } from './components/update-component/color-update/color-update.component';
+import { BrandUpdateComponent } from './components/update-component/brand-update/brand-update.component';
+import { LoginComponent } from './components/login/login.component';
+import { LoginGuard } from './guards/login.guard';
+import { MainComponent } from './components/main/main.component';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', component: CarComponent }, // ekranda ilk ne gösterilsin (tıklanmadığında)
+  { path: '', component: MainComponent }, // ekranda ilk ne gösterilsin (tıklanmadığında)
   { path: 'cars', component: CarComponent },
   { path: 'cars/:brandId', component: CarComponent },
   { path: 'cars/color/:colorId', component: CarComponent },
@@ -27,19 +31,18 @@ const routes: Routes = [
   { path: 'cars/brand/:brandId/color/:colorId', component: CarComponent },
   { path: 'payment/:rental', component: PaymentComponent },
   { path: 'payment', component: PaymentComponent },
-  { path: 'add/car', component: CarAddComponent},
+  { path: 'add/car', component: CarAddComponent, canActivate:[LoginGuard]},
+  { path: 'add/brand', component:BrandAddComponent, canActivate:[LoginGuard]},
+  { path: 'add/color', component:ColorAddComponent, canActivate:[LoginGuard]},
   { path: 'brands', component:BrandListComponent},
-  // { path: 'brands/brandList/brandUpdate/:brandId', component:BrandUpdateComponent},
-  // { path: 'brands/:brandId', component:}
   { path: 'update/cars/:carId', component:CarUpdateComponent},
   { path: 'update/colors/:colorId', component:ColorUpdateComponent},
-  { path: 'update/brands/:brandId', component:CarUpdateComponent},
+  { path: 'update/brands/:brandId', component:BrandUpdateComponent},
   { path: 'update/cars', component:CarListComponent},
   { path: 'update/colors', component:ColorListComponent},
-  { path: 'add/brand', component:BrandAddComponent},
+  { path: 'update/brands', component:BrandListComponent},
   { path: 'delete/cars/:carId', component:CarDeleteComponent},
-  { path: 'add/color', component:ColorAddComponent},
-
+  { path: 'login', component:LoginComponent}
 ];
 
 @NgModule({

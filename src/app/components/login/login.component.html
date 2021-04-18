@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>َAnimated Login Form</title>
+    <link rel="stylesheet" href="login.component.css">
+  </head>
+  <body>
+
+<form [formGroup]="loginForm" class="box" action="login.component.html" method="post">
+  <h1>Login</h1>
+  <input type="text" name="" placeholder="Email" formControlName="email">
+  <input type="password" name="" placeholder="Password" formControlName="password">
+  <input type="submit" name="" value="Login" (click)='login()'>
+</form>
+
+
+  </body>
+</html>
+

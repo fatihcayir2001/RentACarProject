@@ -24,6 +24,7 @@ export class CarAddComponent implements OnInit {
   carAddForm: FormGroup;
   brands: Brand[];
   colors: Color[];
+  
   constructor(
     private formBuilder: FormBuilder,
     private carService: CarService,
@@ -58,6 +59,7 @@ export class CarAddComponent implements OnInit {
           this.toastrService.success(data.message, 'Başarılı');
         },
         (responseError) => {
+          
           if (responseError.error.Errors.length > 0) {
             console.log(responseError.error.Errors);
             for (let i = 0; i < responseError.error.Errors.length; i++) {

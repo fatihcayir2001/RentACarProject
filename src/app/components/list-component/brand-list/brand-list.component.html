@@ -5,14 +5,15 @@
 
 
   <h5><p class="font-weight-bold">Marka Listesi</p></h5>
-  <button class="btn btn-success" routerLink="/brands/brandList/brandAdd" >Marka Ekle</button>
+  <button class="btn btn-success" (click)="routeAdd()">Marka Ekle</button>
 <div> <br></div>
-  <table *ngIf="dataLoaded==true" class="table table-bordered table-condensed table-hover">
+  <table *ngIf="dataLoaded==true" class="table table-dark table-striped">
       <thead class="thead-dark">
         <tr>
           <th scope="col">Marka ID</th>
           <th scope="col">Marka Adı</th>
           <th scope="col"></th>
+          <th></th>
          
         </tr>
       </thead>
@@ -21,8 +22,38 @@
           <td>{{ brand.brandId }}</td> 
           <td>{{ brand.brandName }}</td>
           <td class="operations">
-            <button class="btn btn-fill btn-primary me-md-end"  routerLink="/brands/brandList/brandUpdate/{{ brand.brandId }}" >Güncelle</button>
+            <button class="btn btn-fill btn-primary me-md-end"  routerLink="{{ brand.brandId }}" (click)="setCurrentBrand(brand)">Güncelle</button>
           </td>
+          <td><div>
+            <!-- Button trigger modal -->
+          <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="setCurrentBrand(brand)" >
+            Sil
+          </button>
+          
+          
+          <!-- Modal -->
+          <div  class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div  class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel"><p class="text-secondary">Silmek istediginize emin misiniz?</p></h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div  class="modal-body"><p class="text-secondary">
+                    Bu işlem sonucunda tüm veriler gidicek
+                </p>
+                  
+                </div>
+                
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+                  <button type="button" class="btn btn-danger" (click)="refreshPage()" (click)="delete()">Sil</button>
+                </div>
+              
+              </div>
+            </div>
+          </div>
+          </div></td>
           
         </tr>
       </tbody>
