@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { Color } from 'src/app/models/color';
 import { ColorService } from 'src/app/services/color.service';
 
@@ -9,7 +10,9 @@ import { ColorService } from 'src/app/services/color.service';
 })
 export class ColorListComponent implements OnInit {
   colors:Color[]
-  constructor(private colorService:ColorService) { }
+  currentColor:Color;
+  constructor(private colorService:ColorService,
+    private toastrService:ToastrService) { }
 
   ngOnInit(): void {
     this.getColors()
@@ -19,4 +22,24 @@ export class ColorListComponent implements OnInit {
       this.colors = response.data
     })
   }
+  refreshPage() {
+    setTimeout(() => {
+      window.location.reload();
+      this.toastrService.success("İşlem başarılı","Yönlendirliyorsunuz")
+    }, 1500);
+}
+
+setCurrentColor(color:Color){
+  this.currentColor = color
+  console.log(this.currentColor)
+}
+
+delete(){
+  this.colorService.delete(this.currentColor).subscribe(response=>{
+    this.toastrService.success(response.message,"Success")
+  },errorResponse=>{
+    this.toastrService.error(errorResponse,"Failed")
+  });
+  console.log("car list delete çalıştı")
+}
 }

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -11,23 +12,24 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./navi.component.css']
 })
 export class NaviComponent implements OnInit {
-
+  
   user:User 
   userId:number;
   isAuthenticated:boolean
-  
+
   constructor(
     private authService:AuthService,
     private toastrService:ToastrService,
     private router:Router,
-    private userService:UserService
+    private userService:UserService,
+    
   ) { }
 
   ngOnInit(): void {
-
+    
 
     if (this.checkIfLogin()) {
-      //this.getUserByEmail();
+      this.getUserByEmail();
       console.log("True")
       this.getUserId();
     
@@ -47,19 +49,19 @@ export class NaviComponent implements OnInit {
     this.userId =  this.userService.getUserId()
    }
  
-  //  getUserByEmail() {
-  //    console.log("Çalıştı ")
-  //    this.userService.getByMail(localStorage.getItem("email")).subscribe((response) => {
-  //      this.user = response.data;
-  //      console.log(this.user)
-  //    });
-  //  }
+   getUserByEmail() {
+     console.log("Çalıştı ")
+     this.userService.getByMail(JSON.parse(localStorage.getItem("email") || "{}")).subscribe((response) => { //kontrol et
+       this.user = response.data;
+       console.log(this.user)
+     });
+   }
   
 
-  //  logOut(){
-  //   this.authService.logOut();
-  //   this.toastrService.info("Başarılı  Çıkış Yapıldı")
-  //   this.router.navigate([""])    
-  // }
+   logOut(){
+    this.authService.logOut();
+    this.toastrService.info("Başarılı  Çıkış Yapıldı")
+    this.router.navigate([""])    
+  }
 
 }
